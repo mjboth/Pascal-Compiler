@@ -61,6 +61,9 @@ parser - fully compiled lexan.l + parser.y
 codegen.c - ORIGINAL SOURCE CODE, reads through the binary tree created by the parser and writes out the
 apporpriate x86 assembly code while remembering which variables are stored in which registers.
 
+driver.c - necessary function calls not handled by the code generator, to be compiled with cc and attached to this 
+compiler's code
+
 compiler - fully compiled lexan.l + parser.y + codgen.c
 
 RequiredFiles.zip - a compressed folder containing all files necessary to compile the compiler itself.  Does not include,
