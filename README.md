@@ -63,6 +63,13 @@ apporpriate x86 assembly code while remembering which variables are stored in wh
 
 compiler - fully compiled lexan.l + parser.y + codgen.c
 
+RequiredFiles.zip - a compressed folder containing all files necessary to compile the compiler itself.  Does not include,
+GNU Make, Lex, YACC, or CC, which are all needed in the makefile.
+
+ExampleInput.zip - a small number of Pascal files that can run through all parts of the compiler.
+
+UnusedFiles.zip - all untouched code and notes in a single flat directory.  If a file is missing it will be in here.
+
 
 NOTE:
 
