@@ -12,18 +12,18 @@ You will need the cc compiler installed.
 
 Download the following files from the respository: 
 
-compiler & driver.c
+###### compiler & driver.c
 
 You will also need a pascal file ready to use.  Note that this compiler will only work if everything is syntactically correct.  
 It is not good for checking for errors.  I recommend taking one from ExampleInput.zip, keep all the files in the same directory.
 
 In the Unix terminal run the following command in the directory you are keeping the files:
 
-compiler < [PASCAL_SOURCECODE].pas > code.s
+	compiler < [PASCAL_SOURCECODE].pas > code.s
 
 This will just convert the pascal source code into x86 assembly code.  Execute the following command afterwards:
 
-cc driver.c code.s -lm
+	cc driver.c code.s -lm
 
 To add needed function calls to the assembly code while converting both files into one executable.
 
@@ -84,14 +84,14 @@ GNU Make, Lex, YACC, or CC, which are all needed for the makefile.
 
 If you want to see each step of the compiler in action, just run:
 
-lexer < [PASCAL_SOURCECODE].pas
+	lexer < [PASCAL_SOURCECODE].pas
 
 to view the token list
 
-parser < [PASCAL_SOURCECODE].pas
+	parser < [PASCAL_SOURCECODE].pas
 
 to see the variable types, identifiers, constants declared along with the binary tree produced (in a Lisp-ish format)
 
-compiler < [PASCAL_SOURCECODE].pas
+	compiler < [PASCAL_SOURCECODE].pas
 
 to see the assembly code produced.
