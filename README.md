@@ -16,9 +16,13 @@ You will also need a pascal file ready to use.  Note that this compiler will onl
 It is not good for checking for errors.  I recommend taking one from ExampleInput.zip, keep all the files in the same directory.
 
 In the Unix terminal run the following command in the directory you are keeping the files:
+
 	compiler < [PASCAL_SOURCECODE].pas > code.s
+
 This will just convert the pascal source code into x86 assembly code.  Execute the following command afterwards:
+
 	cc driver.c code.s -lm
+	
 To assemble the final code while adding needed function calls.
 
 
@@ -43,16 +47,16 @@ output file as it reads through.
 
 ## Files
 ---------
-* lexan.l - ORIGINAL SOURCE CODE, assembled by lex to declare a number of regular expressions, then to take in input from the scanner 
+* lexan.l - *ORIGINAL SOURCE CODE*, assembled by lex to declare a number of regular expressions, then to take in input from the scanner 
 in RequireFiles.zip > lex.yy.c to see what regular expressions the readin characters match. Then labels them accordingly through
 functions written in C, and writes them to an output file through RequiredFiles > printtoken.c
 * lexer - fully compiled lexan.l
-* parser.y - ORIGINAL SOURCE CODE, assembled by yacc to declare the legal patterns the tokens can be arranged.  Then reads from the
+* parser.y - *ORIGINAL SOURCE CODE*, assembled by yacc to declare the legal patterns the tokens can be arranged.  Then reads from the
 previously generated token list to see if they match a designated pattern, while attaching the tokens together in C functions called
 by the patterns the tokens are ordered in, to form a binary tree that will display how the program will run/be written in assembly.  
 Also declares and remembers variable identifiers, types, sizes as well as constant values, labels, etc.
 * parser - fully compiled lexan.l + parser.y
-* codegen.c - ORIGINAL SOURCE CODE, reads through the binary tree created by the parser and writes out the
+* codegen.c - *ORIGINAL SOURCE CODE*, reads through the binary tree created by the parser and writes out the
 apporpriate x86 assembly code while remembering which variables are stored in which registers.
 * driver.c - necessary function calls not handled by the code generator, to be compiled with cc and attached to this 
 compiler's code
@@ -69,8 +73,13 @@ GNU Make, Lex, YACC, or CC, which are all needed for the makefile.
 If you want to produce each step of the compiler in action, you can run the following commands.
 
 To view the token list:
+
 	lexer < [PASCAL_SOURCECODE].pas
+
 To see the variable types, identifiers, constants declared along with the binary tree produced (in a Lisp-ish format):
+
 	parser < [PASCAL_SOURCECODE].pas
+
 To see the assembly code produced:
+
 	compiler < [PASCAL_SOURCECODE].pas
