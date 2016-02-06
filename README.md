@@ -1,4 +1,6 @@
 # Pascal-Compiler
+=================
+
 A compiler that can convert Pascal source code into assembly code.
 
 HOW TO USE:
@@ -25,7 +27,8 @@ cc driver.c code.s -lm
 To add needed function calls to the assembly code while converting both files into one executable.
 
 
-HOW IT WORKS:
+## How it works:
+----------------
 
 There are 3 parts to the compiler: The LEXER, the PARSER, and the ASSEMBLY CODE GENERATOR.  
 
@@ -43,38 +46,40 @@ Lisp-like format while identifying all, variables, constants, labels used throug
 The Assembly Generator reads through the binary tree created by the parser and writes out the appropriate x86 assembly code to the
 output file as it reads through.
 
-FILES:
+## Files:
+---------
 
-lexan.l - ORIGINAL SOURCE CODE, assembled by lex to declare a number of regular expressions, then to take in input from the scanner 
+* lexan.l - ORIGINAL SOURCE CODE, assembled by lex to declare a number of regular expressions, then to take in input from the scanner 
 in RequireFiles.zip > lex.yy.c to see what regular expressions the readin characters match. Then labels them accordingly through
 functions written in C, and writes them to an output file through RequiredFiles > printtoken.c
 
-lexer - fully compiled lexan.l
+* lexer - fully compiled lexan.l
 
-parser.y - ORIGINAL SOURCE CODE, assembled by yacc to declare the legal patterns the tokens can be arranged.  Then reads from the
+* parser.y - ORIGINAL SOURCE CODE, assembled by yacc to declare the legal patterns the tokens can be arranged.  Then reads from the
 previously generated token list to see if they match a designated pattern, while attaching the tokens together in C functions called
 by the patterns the tokens are ordered in, to form a binary tree that will display how the program will run/be written in assembly.  
 Also declares and remembers variable identifiers, types, sizes as well as constant values, labels, etc.
 
-parser - fully compiled lexan.l + parser.y
+* parser - fully compiled lexan.l + parser.y
 
-codegen.c - ORIGINAL SOURCE CODE, reads through the binary tree created by the parser and writes out the
+* codegen.c - ORIGINAL SOURCE CODE, reads through the binary tree created by the parser and writes out the
 apporpriate x86 assembly code while remembering which variables are stored in which registers.
 
-driver.c - necessary function calls not handled by the code generator, to be compiled with cc and attached to this 
+* driver.c - necessary function calls not handled by the code generator, to be compiled with cc and attached to this 
 compiler's code
 
-compiler - fully compiled lexan.l + parser.y + codgen.c
+* compiler - fully compiled lexan.l + parser.y + codgen.c
 
-RequiredFiles.zip - a compressed folder containing all files necessary to compile the compiler itself.  Does not include,
-GNU Make, Lex, YACC, or CC, which are all needed in the makefile.
+* RequiredFiles.zip - a compressed folder containing all files necessary to compile the compiler itself.  Does not include,
+GNU Make, Lex, YACC, or CC, which are all needed for the makefile.
 
-ExampleInput.zip - a small number of Pascal files that can run through all parts of the compiler.
+* ExampleInput.zip - a small number of Pascal files that can run through all parts of the compiler.
 
-UnusedFiles.zip - all untouched code and notes in a single flat directory.  If a file is missing it will be in here.
+* UnusedFiles.zip - all untouched code and notes in a single flat directory.  If a file is missing from RequiredFiles.zip it will be in here.
 
 
-NOTE:
+## Notes:
+---------
 
 If you want to see each step of the compiler in action, just run:
 
