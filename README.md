@@ -3,7 +3,8 @@
 
 A compiler that can convert Pascal source code into assembly code.
 
-HOW TO USE:
+# How to use
+-------------
 
 I can only get this compiler to work on UNIX machines so far, but I am looking to getting it running on Windows.
 
@@ -27,7 +28,7 @@ cc driver.c code.s -lm
 To add needed function calls to the assembly code while converting both files into one executable.
 
 
-## How it works:
+## How it works
 ----------------
 
 There are 3 parts to the compiler: The LEXER, the PARSER, and the ASSEMBLY CODE GENERATOR.  
@@ -46,7 +47,7 @@ Lisp-like format while identifying all, variables, constants, labels used throug
 The Assembly Generator reads through the binary tree created by the parser and writes out the appropriate x86 assembly code to the
 output file as it reads through.
 
-## Files:
+## Files
 ---------
 
 * lexan.l - ORIGINAL SOURCE CODE, assembled by lex to declare a number of regular expressions, then to take in input from the scanner 
@@ -78,7 +79,7 @@ GNU Make, Lex, YACC, or CC, which are all needed for the makefile.
 * UnusedFiles.zip - all untouched code and notes in a single flat directory.  If a file is missing from RequiredFiles.zip it will be in here.
 
 
-## Notes:
+## Notes
 ---------
 
 If you want to see each step of the compiler in action, just run:
