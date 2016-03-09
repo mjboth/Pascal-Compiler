@@ -97,7 +97,7 @@ accepted.  Multidimensional declarations are also allowed.
 * **writelnf()** - Print line floating point number
 * **writeln()**  - Print line string
 
-**Note:** while these calls are written to assembly by this compiler, they must be assmebled with *drivers.c* to actually be used.
+**Note:** while the function calls are written to assembly by this compiler, they must be assmebled with *drivers.c* to actually be used.
 
 #### Recognized Operators:
 
