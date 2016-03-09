@@ -74,13 +74,13 @@ Must be declared last
 * **to**      - Used in a for-loop's conditional statement: the initialized value will be incremented to the following value
 * **downto**  - Used in a for-loop's conditional statement: the initialized value will be decremented to the following value
 * **while**   - Begins a while-loop.
-* **do**      - Placed after a for/while loop's conditional statement: identifies the block of code the loop will execute.
+* **do**      - Placed after a for/while loop's conditional statement: identifies the statement (or block of statements) the loop will execute.
 * **goto**    - Jumps the program to a provided label number
 
 ###### If
 
 * **if**      - Begins an if-statement.
-* **then**    - Block of statements to execute when the if-statement returns true.
+* **then**    - Statement (or block of statements) to execute when the if-statement returns true.
 
 ###### Arrays
 
