@@ -90,12 +90,8 @@ accepted.  Multidimensional declarations are also allowed.
 
 ###### Fucntion Calls
 
-* **writei()**   - Print an integer
-* **writef()**   - Print a floating point number
-* **write()**    - Print a string
-* **writelni()** - Print line integer
-* **writelnf()** - Print line floating point number
-* **writeln()**  - Print line string
+* **write()**    - Prints an integer, real number, or a string
+* **writeln()**  - Prints an integer, real number, or a string followed by a new line character
 
 **Note:** while the function calls are written to assembly by this compiler, they must be assmebled with *drivers.c* to actually be used.
 
@@ -156,9 +152,13 @@ GNU Make, Lex, Yacc, or CC, which are required to use the makefile.
 
 If you want to produce each step of the compiler in action, you can run the following commands.
 
+##### Lexer
+
 To view the token list:
 
 	lexer < [PASCAL_SOURCECODE].pas
+
+##### Parser
 
 To see the variable types, identifiers, constants declared along with the binary tree produced: commented-out statements in the main function of parse.y must be
 restored and recompiled with the files in RequiredFiles.zip using
@@ -169,6 +169,7 @@ and the following command executed.
 
 	parser < [PASCAL_SOURCECODE].pas
 
+##### Assembly Generator
 
 To see the assembly code produced:
 
