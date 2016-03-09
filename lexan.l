@@ -187,7 +187,7 @@ int install_string() {
 	return(STRING);
 	}
 
-int install_integer() {  /* Note -- you may use sscanf for this assignment. */
+int install_integer() {
   int num;
   yylval = (TOKEN) talloc();   /* Make new token, set yylval to point to it */
   yylval->tokentype = NUMBERTOK;
@@ -198,7 +198,7 @@ int install_integer() {  /* Note -- you may use sscanf for this assignment. */
   return(NUMBER);
  }
 
-int install_fnum() {  /* Note -- you may use sscanf for this assignment. */
+int install_fnum() {
   float fnum;
   yylval = (TOKEN) talloc();   /* Make new token, set yylval to point to it */
   yylval->tokentype = NUMBERTOK;

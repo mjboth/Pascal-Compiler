@@ -1,12 +1,12 @@
 # Pascal-Compiler
-=================
-A compiler that can convert Pascal source code into assembly code.
-# How to use
--------------
+***
+A compiler that converts Pascal source code into x86 assembly code.
 
-I can only get this compiler to work on UNIX machines so far, but I am looking to getting it running on Windows.
+**NOTE:** This compiler only works on UNIX machines so far, but I am looking into how to get it running on Windows.
 
-You will need the cc compiler installed.
+## How to use
+
+This compiler only converts a Pascal file into and x86 assembly file.  To turn the assembly code into an executable, you will need the cc compiler installed.
 
 Download the following files from the respository: 
 
@@ -19,20 +19,19 @@ In the Unix terminal run the following command in the directory you are keeping 
 
 	compiler < [PASCAL_SOURCECODE].pas > code.s
 
-This will just convert the pascal source code into x86 assembly code.  Execute the following command afterwards:
+This will create the assembly file.  Execute the following command afterwards:
 
 	cc driver.c code.s -lm
-	
-To assemble the final code while adding needed function calls.
+
+To assemble the final code into an executable while adding needed function calls.
 
 
 ## How it works
-----------------
 
-There are 3 parts to the compiler: The LEXER, the PARSER, and the ASSEMBLY CODE GENERATOR.  
+There are 3 parts to the compiler: The **Lexer**, the **Parser**, and the **Assembly Code Generator**.  
 
 The Lexer works by reading in the pascal source code character by character looking out for and words, characters, symbols, numbers,
-any regular expression declared in the lexan.l file while ignoring anything commented out by  "(*","*)","{*","*}".  
+any regular expression declared in the lexan.l file while ignoring anything commented out by  "(\*","\*)","{","}".  
 It any declared expression and assign that item to a token, which identifies the token to be either an operator, delimiter,
 reserved word for the pascal language, identifier, string, or number.  It may then assign the token a subtype if it is an 
 operator/delimiter/reserved/number, just to be more specific about what type of token it is.  The lexer will then return the 
@@ -45,30 +44,115 @@ Lisp-like format while identifying all, variables, constants, labels used throug
 The Assembly Generator reads through the binary tree created by the parser and writes out the appropriate x86 assembly code to the
 output file as it reads through.
 
+## Features
+
+This compiler understands the following Pascal terms:
+
+
+#### Reserved Words:
+
+
+###### Declarations
+
+* **program** - Identifies the start of the program, must be followed with the program name, arguments, then the declarations.
+* **label**   - Begins the block of declarations of labels that state where the program can jump to. Labels, if used, must be declared first.
+* **const**   - Begins the block of declaration and initialization of constants.  Constants, if declared, must come after the label declarations.
+* **type**    - Begins the block of declaration of datatypes.  These user named datatypes can hold information of what datatypes a record will store, what
+datatype a pointer will point to, what the type of a array is, enums, etc...  Must be declared after labels and constants.
+* **var**     - Begins the block of declaration of variables. All variables must either be an integer, real number, or a previously declared *type*.  
+Must be declared last
+* **record**  - A collection of variables, used in datatype and variable declarations.
+* **begin**   - Begins a new block of statements to execute.
+* **end**     - Closes the block of statements from the last begin statement.
+* **nil**     - Zero
+
+###### Loops
+
+* **repeat**  - Begins what is essentially a Do-While loop.
+* **until**   - Marks the end of a repeat statement when the following conditional is met.
+* **for**     - Declares a for-loop
+* **to**      - Used in a for-loop's conditional statement: the initialized value will be incremented to the following value
+* **downto**  - Used in a for-loop's conditional statement: the initialized value will be decremented to the following value
+* **while**   - Begins a while-loop.
+* **do**      - Placed after a for/while loop's conditional statement: identifies the block of code the loop will execute.
+* **goto**    - Jumps the program to a provided label number
+
+###### If
+
+* **if**      - Begins an if-statement.
+* **then**    - Block of statements to execute when the if-statement returns true.
+
+###### Arrays
+
+* **array**   - Declares a new array in the variable declarations.  Array size must also be declared here; integers, subranges, and enums are
+accepted.  Multidimensional declarations are also allowed.
+* **of**      - Declares the type of values an array will store.
+
+###### Fucntion Calls
+
+* **writei()**   - Print an integer
+* **writef()**   - Print a floating point number
+* **write()**    - Print a string
+* **writelni()** - Print line integer
+* **writelnf()** - Print line floating point number
+* **writeln()**  - Print line string
+
+**Note:** while these calls are written to assembly by this compiler, they must be assmebled with *drivers.c* to actually be used.
+
+#### Recognized Operators:
+
+* **\+**    - Addition
+* **\-**    - Subtraction
+* **\***    - Multiplication
+* **/**     - Division
+* **<**   - Less than
+* **<=**  - Less than or equal
+* **=**     - Equal to
+* **<>**  - Not equal to
+* **>**     - Greater than
+* **>=**    - Greater than or equal to
+* **:=**    - Assign value
+* **^**     - Declare/dereference Pointer
+* **\.**    - Get record field
+
+
+#### Delimiters:
+
+* **;**     - End statement
+* **,**     - Pass another value 
+* **:**     - Declare variable type or label number
+* **(**     - Pass function argument or prioritize operations
+* **)**     - Close left parenthesis
+* **[**     - For array indexes
+* **]**     - Close left bracket
+* **\.\.**    - Initialize array subrange
+* **\{** or **\(*** - Start comments
+* **\}** or **\*\)** - End comments
+
+
 ## Files
----------
-* lexan.l - *ORIGINAL SOURCE CODE*, assembled by lex to declare a number of regular expressions, then to take in input from the scanner 
+
+* lexan.l - **ORIGINAL SOURCE CODE**, assembled by lex to declare a number of regular expressions, then to take in input from the scanner 
 in RequireFiles.zip > lex.yy.c to see what regular expressions the readin characters match. Then labels them accordingly through
 functions written in C, and writes them to an output file through RequiredFiles > printtoken.c
 * lexer - fully compiled lexan.l
-* parser.y - *ORIGINAL SOURCE CODE*, assembled by yacc to declare the legal patterns the tokens can be arranged.  Then reads from the
+* parser.y - **ORIGINAL SOURCE CODE**, assembled by yacc to declare the legal patterns the tokens can be arranged.  Then reads from the
 previously generated token list to see if they match a designated pattern, while attaching the tokens together in C functions called
 by the patterns the tokens are ordered in, to form a binary tree that will display how the program will run/be written in assembly.  
 Also declares and remembers variable identifiers, types, sizes as well as constant values, labels, etc.
 * parser - fully compiled lexan.l + parser.y
-* codegen.c - *ORIGINAL SOURCE CODE*, reads through the binary tree created by the parser and writes out the
+* codegen.c - **ORIGINAL SOURCE CODE**, reads through the binary tree created by the parser and writes out the
 apporpriate x86 assembly code while remembering which variables are stored in which registers.
-* driver.c - necessary function calls not handled by the code generator, to be compiled with cc and attached to this 
-compiler's code
+* driver.c - necessary function calls not handled by the code generator, to be compiled with cc and attached to the assembly code created by the compiler.
 * compiler - fully compiled lexan.l + parser.y + codgen.c
 * RequiredFiles.zip - a compressed folder containing all files necessary to compile the compiler itself.  Does not include,
-GNU Make, Lex, YACC, or CC, which are all needed for the makefile.
+GNU Make, Lex, Yacc, or CC, which are required to use the makefile.
 * ExampleInput.zip - a small number of Pascal files that can run through all parts of the compiler.
-* UnusedFiles.zip - all untouched code and notes in a single flat directory.  If a file is missing from RequiredFiles.zip it will be in here.
+* UnusedFiles.zip - all untouched skeleton code and notes in a single flat directory.  If a file is missing from RequiredFiles.zip it will be in here.
 
 
 ## Notes
----------
+
 
 If you want to produce each step of the compiler in action, you can run the following commands.
 
@@ -76,9 +160,15 @@ To view the token list:
 
 	lexer < [PASCAL_SOURCECODE].pas
 
-To see the variable types, identifiers, constants declared along with the binary tree produced (in a Lisp-ish format):
+To see the variable types, identifiers, constants declared along with the binary tree produced: commented-out statements in the main function of parse.y must be
+restored and recompiled with the files in RequiredFiles.zip using
+
+	make parser
+
+and the following command executed.
 
 	parser < [PASCAL_SOURCECODE].pas
+
 
 To see the assembly code produced:
 
