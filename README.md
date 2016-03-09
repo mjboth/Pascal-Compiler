@@ -128,21 +128,21 @@ accepted.  Multidimensional declarations are also allowed.
 
 ## Files
 
-* lexan.l - **ORIGINAL SOURCE CODE**, assembled by lex to declare a number of regular expressions, then to take in input from the scanner 
+* **lexan.l** - **ORIGINAL SOURCE CODE**, assembled by lex to declare a number of regular expressions, then to take in input from the scanner 
 in RequireFiles.zip > lex.yy.c to see what regular expressions the readin characters match. Then labels them accordingly through
 functions written in C, and writes them to an output file through RequiredFiles > printtoken.c
-* lexer - fully compiled lexan.l
-* parser.y - **ORIGINAL SOURCE CODE**, assembled by yacc to declare the legal patterns the tokens can be arranged.  Then reads from the
+* **lexer** - fully compiled lexan.l
+* **parser.y** - **ORIGINAL SOURCE CODE**, assembled by yacc to declare the legal patterns the tokens can be arranged.  Then reads from the
 previously generated token list to see if they match a designated pattern, while attaching the tokens together in C functions called
 by the patterns the tokens are ordered in, to form a binary tree that will display how the program will run/be written in assembly.  
 Also declares and remembers variable identifiers, types, sizes as well as constant values, labels, etc.
-* parser - fully compiled lexan.l + parser.y
-* codegen.c - **ORIGINAL SOURCE CODE**, reads through the binary tree created by the parser and writes out the
+* **parser** - fully compiled lexan.l + parser.y
+* **codegen.c** - **ORIGINAL SOURCE CODE**, reads through the binary tree created by the parser and writes out the
 apporpriate x86 assembly code while remembering which variables are stored in which registers.
-* driver.c - necessary function calls not handled by the code generator, to be compiled with cc and attached to the assembly code created by the compiler.
-* compiler - fully compiled lexan.l + parser.y + codgen.c
+* **driver.c** - necessary function calls not handled by the code generator, to be compiled with cc and attached to the assembly code created by the compiler.
+* **compiler** - fully compiled lexan.l + parser.y + codgen.c
 * RequiredFiles.zip - a compressed folder containing all files necessary to compile the compiler itself.  Does not include,
-GNU Make, Lex, Yacc, or CC, which are required to use the makefile.
+GNU Make, Lex, Yacc, or CC, which are required to in the makefile.
 * ExampleInput.zip - a small number of Pascal files that can run through all parts of the compiler.
 * UnusedFiles.zip - all untouched skeleton code and notes in a single flat directory.  If a file is missing from RequiredFiles.zip it will be in here.
 
