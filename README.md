@@ -2,11 +2,11 @@
 ***
 A compiler that converts Pascal source code into x86 assembly code.
 
-**NOTE:** This compiler only works on UNIX machines so far, but I am looking into how to get it running on Windows.
+**NOTE:** This compiler works on 64-bit Linux machines so far, but I am looking into how to get it running on Windows.
 
 ## How to use
 
-This compiler only converts a Pascal file into and x86 assembly file.  To turn the assembly code into an executable, you will need the cc compiler installed.
+This compiler only converts a Pascal file into and x86 assembly file.  To turn the assembly code into an executable, you will need the **cc** compiler installed.
 
 Download the following files from the respository: 
 
@@ -19,7 +19,7 @@ In the Unix terminal run the following command in the directory you are keeping 
 
 	compiler < [PASCAL_SOURCECODE].pas > code.s
 
-This will create the assembly file.  Execute the following command afterwards:
+This will create the assembly file ***code.s***.  Execute the following command afterwards:
 
 	cc driver.c code.s -lm
 
@@ -93,7 +93,7 @@ accepted.  Multidimensional declarations are also allowed.
 * **write()**    - Prints an integer, real number, or a string
 * **writeln()**  - Prints an integer, real number, or a string followed by a new line character
 
-**Note:** while the function calls are written to assembly by this compiler, they must be assmebled with *drivers.c* to actually be used.
+**Note:** while the function calls are written to assembly by this compiler, they must be assmebled with ***driver.c*** to actually be used.
 
 #### Recognized Operators:
 
@@ -161,12 +161,7 @@ To view the token list:
 
 ##### Parser
 
-To see the variable types, identifiers, constants declared along with the binary tree produced: commented-out statements in the main 
-function of parse.y must be restored and recompiled with the files in ForCompilingTheCompiler.zip using
-
-	make parser
-
-and the following command executed.
+To see the variable types, identifiers, constants declared along with the binary tree produced:
 
 	parser < [PASCAL_SOURCECODE].pas
 
@@ -175,3 +170,20 @@ and the following command executed.
 To see the assembly code produced:
 
 	compiler < [PASCAL_SOURCECODE].pas
+	
+##### To Compile the Compiler
+
+To compile any of the following parts of the compiler, GNU Make must be installed on your machine along with Lex and Yacc.  Download
+and extract the files from *ForCompilingTheCompiler.zip* and use the commands for the *makefile*
+
+	make [lexer/parser/compiler]
+	
+to make which ever step of the compiler you choose.  You do not need to compile each step of the compiler beforehand to get it to work,
+
+	make compiler
+	
+will automatically recompile every step (lexer + parser + assembly generator) as the ***compiler*** executable.
+
+To view the steps of the parser: commented-out statements in the main function of ***parse.y*** must be restored before compiling with
+
+	make parser
