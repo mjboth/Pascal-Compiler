@@ -299,7 +299,6 @@ This example shows what happens to "graph1.pas" as it goes through each step of 
 	 25665648     integer  BASIC  basicdt   0          siz     4
 	 25665744        char  BASIC  basicdt   2          siz     1
 	 25665840     boolean  BASIC  basicdt   3          siz     4
-	 25665936         exp  knd 5 0  typ 25666032  lvl  0  siz     0  off     0
 	Symbol table level 1
 	 25690000         lim  CONST  typ INTEGER  val  32
 	 25690096           c  CONST  typ    REAL  val  6.283180e+00
