@@ -10,7 +10,7 @@ A compiler that converts Pascal source code into x86 assembly code.
 * **lexan.l** - **Source Code** Used to create the Lexer.  Reads through the user's source code while labeling all of the code's significant items as tokens while ignoring user comments.
 * **parse.y** - **Source Code** Used to create the Parser.  Declares all legal patterns the tokens can be arranged.  Then reads from the generated token list to see if they match a declared pattern while connecting the tokens together to form a binary tree that will organize how the program will run.  Also creates and lists any user declared variables.
 * **codegen.c** - **Source Code** Writes the assembly code.  Reads through the binary tree created by the parser and generates x86 assembly code while keeping track of the variables and registers.
-* **compiler** - fully compiled lexan.l + parser.y + codgen.c
+* **compiler** - **Executable** Fully compiled lexan.l + parser.y + codgen.c
 * ForCompilingTheCompiler.zip - a compressed folder containing all files necessary to compile the compiler itself. GNU Make, Lex, Yacc, and CC are required to use the makefile.
 * ExamplePascal.zip - contains several Pascal files known to work on this compiler.
 
