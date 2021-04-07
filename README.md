@@ -17,7 +17,7 @@ A compiler that converts Pascal source code into x86 assembly code.
 
 ## How to use
 
-Download "compiler" from the respository, you will also need a pascal file ready to use.  Remember that this compiler does not check for syntax errors, so I recommend taking a pascal file from "ExamplePascal.zip".
+Download "compiler" from the repository, you will also need a pascal file ready to use.  Remember that this compiler does not check for syntax errors, so I recommend taking a pascal file from "ExamplePascal.zip".
 
 In the Unix shell, run the following command in the directory you are keeping the files:
 
@@ -38,7 +38,7 @@ The Lexer works by reading in a pascal file byte-by-byte; looking out for and wo
 
 The Parser reads through the tokens in chronological order to see if they form a legal syntax that was declared in "parser.y". As it reads through, it connects the instruction tokens together to create a binary tree that represents the order the code will be executed.
 
-#### Assebly Generator
+#### Assembly Generator
 
 The Assembly Generator reads through the binary tree of instruction tokens starting from the root in a depth-first traversal and writes out the assembly code as it goes.
 
@@ -86,7 +86,7 @@ This compiler understands the following Pascal terms:
 	<b>of</b>      - Declares the type of values an array will store.
 </pre>
 
-###### Fucntion Calls
+###### Function Calls
 <pre>
 	<b>write()</b>    - Prints an integer, real number, or a string
 	<b>writeln()</b>  - Prints an integer, real number, or a string followed by a new line character
